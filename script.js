@@ -203,5 +203,10 @@ function toggleWishForm() {
 function toggleWishes() {
     document.getElementById('wishes').classList.toggle('hidden');
 }
+//click calendar
+document.querySelector('.section-calendar a').addEventListener('click', function(e) {
+    console.log('El enlace fue clickeado');
+    // Verifica si el navegador está bloqueando el enlace
+});
 
 
