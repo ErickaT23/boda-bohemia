@@ -1,0 +1,873 @@
+:root {
+    --scroll-animation-duration: 0.5s;
+}
+html, body {
+    overflow: auto;  /* O eliminar esta propiedad si no es estrictamente necesaria */
+}
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: oblique;
+    background-color:transparent;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Great Vibes', serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2),;
+}
+#envelope {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    perspective: 1000px;
+    z-index: 10;
+}
+#envelope:hover {
+    transform: scale(1.05);
+}
+/* Parte superior del sobre (solapa) */
+#envelope-top {
+    top: 0;
+    border-bottom: none;
+}
+/* Parte inferior del sobre (cuerpo) */
+#envelope-bottom {
+    bottom: 0;
+    border-top: none;
+}
+#envelope-top, #envelope-bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    background: url(/images/Envelope.jpg);
+    background-size: cover; /* Ajusta la imagen para que cubra el área */
+        background-position: center; /* Centra la imagen */
+        box-shadow: 0 4px 8px rgba(216, 198, 181, 0.5), 0 6px 20px rgba(216, 198, 181, 0.3);
+}
+/* Sello del sobre */
+#seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.216);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 1s ease-in-out;
+    z-index: 11;
+}
+/* Texto dentro del sello */
+#seal h2 {
+    margin: 0;
+    font-size: 38px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.216);
+    font-family: Garamond, serif;
+    background: linear-gradient(to right, #5e3b1e, #8b5e3c, #b29a68, #8b5e3c, #5e3b1e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#invitacion {
+    display: none;
+    background: transparent;
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.sintillo{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: -100px;
+    margin-bottom: -50px;
+    z-index: 2;
+    color: white;
+}
+.sintillo::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(/images/div-play.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;  
+}
+/*texto dorado*/
+.sintillo h1, .sintillo h2, .sintillo h3{
+    background: linear-gradient(to right, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+/*header*/
+.sintillo h1{
+    margin: 0;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 50px;
+    margin-top: 160px;
+    padding: 40px;
+}
+.sintillo h2{
+    font-size: 35px;
+    margin-top: 220px;
+    padding: 20px;
+}
+.sintillo h3 {
+    margin: 0;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 50px;
+    margin-top: 290px;
+    padding: 20px;
+}
+.photo-section {
+    position: relative; /* Permite que .photo-text se posicione sobre la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que la sección ocupe toda la altura de la pantalla */
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+.section-main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.section-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor */
+}
+/*section div1*/
+.section-cerezo{
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: -20px;
+}
+.section-cerezo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/45.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/*secciones generales*/
+.section , .section-playlist, .section-filter, .section-quote{
+    padding: 0;
+    transform: translateY(20px);
+    animation: fadeIn var(--scroll-animation-duration) ease-in forwards;
+}
+/*sección countdown*/
+.section-countdown {
+    margin: 0;
+    padding: 0;
+    transform: translateY(20px);
+    animation: fadeIn var(--scroll-animation-duration) ease-in forwards;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*colores para el texto y tamaños*/
+.section-countdown h1, .countdown-circle span, .section-music h2, .section h2, .section-playlist h2, .gifts-section h2, .section h3, .section-filter h2, .gallery-section h2, .wishes-section h2, #wish-form h3, .album-section h2{
+    background: linear-gradient(to right, #5e3b1e, #8b5e3c, #b29a68, #8b5e3c, #5e3b1e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.section-countdown p, .section p, .section span, .gifts-section p, .gallery-section p, #wish-form label, #wish-form textarea, #wish-form input{
+    color: #9a731b;
+}
+.album-section{
+    color: olive;
+}
+.section-main h2 {
+    top: 18%;
+    font-size: 50px;
+}
+.section h2, .section-playlist h2, .gifts-section h2, .section h3{
+    text-transform: capitalize;
+    padding: 10px;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.section p{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    padding: 5px;
+    margin: 0;
+}
+.section span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0;
+}
+.section h1{
+    padding: 15px;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 40px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    animation: shine 1.5s infinite linear;
+}
+/*sección de contador*/
+.section-countdown h1 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 50px;
+    font-weight: 400;
+    font-style: italic;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+.section-countdown p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 24px;
+    padding: 7px;
+}
+#contador{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0;
+}
+.countdown-circle {
+    width: 75px;
+    height: 75px;
+    background:#ecdac966;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.countdown-circle span {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0;
+    font-family: var(--font-text);
+    font-style: italic;
+}
+.section-calendar {
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 180px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #ffffff91;
+    cursor: pointer;
+}
+.section-calendar a {
+    text-decoration: none;
+    font-family: var(--font-text);
+    color: #9a731b;
+    font-style: italic;
+    font-size: 1.2em;
+}
+.section-calendar:hover {
+    background-color:#9a731b;
+}
+.section-calendar a:hover {
+    color: white;
+}
+.mensaje-especial {
+    font-size: 24px;
+    font-weight: bold;
+    color: olive; /* Ajusta el color a la paleta de tu marca */
+    text-align: center;
+    margin-top: 20px;
+}
+/*section music*/
+.section-music{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.section-music h2{
+    font-size: 28px;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: capitalize;
+    padding: 10px;
+}
+/*sección de invitación*/
+.guest-section{
+    background-color: #ecdac9;
+    text-align: center;
+    padding: 15px 0 15px;
+    margin: -5px 0 0 0;
+}
+.guest-section p{
+    font-size: 55px;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
+    background: linear-gradient(to right, #000000, #1a1a1a, #2c2c2c, #1a1a1a, #000000); 
+    -webkit-background-clip: text; 
+    color: transparent;
+}
+.invitation-info-section {
+    position: relative;
+    background-color: #9a741b92;
+    text-align: center;
+    padding: 15px 0 15px;
+}
+.invitation-info-section p {
+    color: transparent;
+    font-size: 55px;
+    background: linear-gradient(to right, #f1f1f1, #e0e0e0, #ffffff, #e0e0e0, #f1f1f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/*Sección de itinerario*/
+/*lord icon*/
+.lord-icon-style {
+    width: 200px;
+    height: 200px;
+}
+.itinerary-section {
+    background-color: white;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+.itinerary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.itinerary-details {
+    text-align: center;
+}
+/*sección div1*/
+.section-cerezo1{
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.section-cerezo1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/44.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/*sección de regalo*/
+.gifts-section p, .album-section p{
+    font-size: 80px;
+    margin: 10px;
+    cursor: pointer;
+}
+/*div2*/
+.section-cerezo2{
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.section-cerezo2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/48.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/*seccion de galería*/
+.gallery-main {
+    margin-bottom: 10px;
+}
+.gallery-main img {
+    width: 850px;
+    height: 850px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.gallery-main img:hover {
+    transform: scale(1.05);
+}
+.gallery-thumbs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+.gallery-thumbs img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.gallery-thumbs img:hover {
+    transform: scale(1.05);
+}
+.photo-full img {
+    width: 100%;
+    height: auto;
+    margin-bottom: -5px;
+    padding: 0;
+}
+/* Ocultamos el checkbox de control */
+.hidden-checkbox {
+    display: none;
+}
+/* Por defecto, el modal está oculto */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 950px; 
+    height: 990px; 
+    background-color: #ffffffa1; 
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    align-content: center;
+    justify-items: center;
+}
+/* Mostrar el modal cuando el checkbox está activado */
+/* Mostrar el modal cuando el checkbox está activado */
+.hidden-checkbox:checked ~ .modal {
+    display: grid;
+}
+/* Estilos del botón de cierre */
+.close {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    color: black;
+    font-size: 85px;
+    cursor: pointer;
+}
+/* Estilo para la imagen dentro del modal */
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+}
+/*sección de buenos deseos*/
+#wish-form {
+    margin-top: 20px;
+    text-align: left;
+    padding: 10px;
+}
+#wish-form h3 {
+    font-size: 90px;
+    margin-bottom: 10px;
+    text-transform: initial;
+}
+#wish-form label {
+    font-size: 60px;
+    margin: 5px 0;
+    display: block;
+}
+#wish-form input, #wish-form textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+.hidden {
+    display: none;
+}
+/*seccion del album*/
+.hashtag {
+    font-size: 40px;
+    font-weight: 400;
+    color: olive;
+}
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.upload-btn{
+    background-color:#9a731b;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.3s;
+    border: none;
+    font-size: 1em;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-family: 'Cormorant Garamond', serif;
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
+.upload-btn:hover {
+    background-color: white;
+    color: #9a731b;
+}
+/*div3*/
+.section-cerezo3{
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.section-cerezo3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/46.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/*seccion de confirmación*/
+/*seccion de frase*/
+.section-quote{
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 0;
+}
+.section-quote h1 {
+    background: linear-gradient(to right, #5e3b1e, #8b5e3c, #b29a68, #8b5e3c, #5e3b1e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;   
+    font-weight: 400;
+    font-style: italic;
+    font-size: 35px;
+    padding: 10px;
+    margin: 0;
+}
+.icon {
+    padding: 0;
+    margin: 0;
+}
+.icon img {
+    width: 50%;
+    margin-top: -20px;
+    margin-bottom: -20px;
+}/*section div4*/
+/*botones*/
+button{
+    background-color:#9a731b;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.3s;
+    border: none;
+    font-size: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-family: 'Cormorant Garamond', serif;
+
+}
+button:hover{
+    background-color: white;
+    color: #9a731b;
+}
+/*footer*/
+footer {
+    padding: 20px;
+    background:#9a731b;
+    color: white;
+    font-size: var(--footer-font-size);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+.section-social-icons {
+    padding: 20px;
+}
+.section-social-icons a {
+    color: white;
+    margin: 0 10px;
+    text-decoration:none;
+}
+.section-social-icons i{
+    font-size: 35px;
+}
+.section-logo img{
+    margin-top: 0px;
+}
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Media Queries */
+@media (max-width: 768px){
+    .seal{
+        width: 200px;
+        height: 200px;
+        }
+    .sealh h2{
+            font-size: 60px;
+        }
+    .section-music{
+        margin-top: -90px;
+        height: 300px;
+    } 
+    .main-content {
+        padding: 0;
+        max-width: 100%; /* Asegura que ocupe todo el ancho disponible en móviles */
+    }
+    #seal {
+        width: 100px;
+        height: 100px;
+    }
+    #seal h2 {
+        font-size: 32px;
+    }
+    .photo.section{
+        position: relative; /* Permite que .photo-text se posicione sobre la imagen */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Asegura que la sección ocupe toda la altura de la pantalla */
+        text-align: center;
+        box-sizing: border-box;
+        overflow: hidden; /* Evita que el contenido se desborde */
+    }
+    .photo-text h1 {
+        margin-top: -350px;
+        font-size: 50px;
+    }
+    .photo-text h2 {
+        margin-top: -50px;
+        font-size: 35px;
+    }
+    .photo-text h3{
+        margin-top: -50px;
+        font-size: 45px;
+        text-transform: none;
+    }
+    .texto-play h2{
+        margin-top: -50px;
+        font-size: 35px;
+    }
+    .photo-text p {
+        font-size: 25px;
+        padding: 10px;
+        margin-top: -30px;
+        margin-bottom: 30px;
+    }
+    .countdown{
+        margin-top: 20px;
+    }
+    .countdown .unit {
+        margin: 0 5px;
+    }
+    .contenedor-play{
+        height: 300px;
+    }
+    .quote-section{
+        padding: 25px 5px;
+    }
+    .quote-section p, .guest-section p, .invitation-info-section p, .special-day-section p .seccion p, .gifts-section p, .filter-section p, .rsvp-section p, .playlist-section p, .section p, .nochild-section p, .album-section p{
+        font-size: 22px;
+        padding: 10px;
+    }
+    .album-section h1{
+        font-size: 46px;
+    }
+    .section-calendar a{
+        font-size: 20px;
+        padding: 10px;
+    }
+    .story-section h2, .gifts-section h2, .seccion h2, .filter-section h2, .rsvp-section h2, .wishes-section h2, .playlist-section h2, .gallery-section h2, .nochild-section h2, .section h3, .album-section h2{
+        font-size: 40px;
+        margin-bottom: 10px;
+        text-transform: initial;
+    }
+    .itinerary-item h2{
+        font-size: 40px;
+        margin: 0;
+        text-transform: initial;
+    }
+    .itinerary-item i, .location-item i, .seccion i, .playlist-section i{
+        font-size: 60px;
+        margin-bottom: 8px;
+    }
+    .itinerary-item p{
+        font-size: 22px;
+        padding: 5px;
+        margin: 0;
+    }
+    .lord-icon-style{
+        width: 200px;
+        height: 200px;
+    }
+    .directions-button, .rsvp-section button,.wishes-section button{
+        font-size: 16px;
+    }
+    .time-location .date, .time-location .time{
+        font-size: 24px;
+        margin: 8px;
+        font-style: normal;
+    }
+    .time-location .separator{
+        font-size: 36px;
+        font-style: normal;
+    }
+    .time-display{
+        font-size: 30px;
+    }
+    .unit {
+        width: 65px;
+        height: 65px;
+        padding: 15px 10px 1px 10px;
+        border-radius: 100px;
+    }
+    .number {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .label {
+        font-size: 18px;
+    }
+    .modal{
+        width: 400px;
+        height: 700px;
+    }
+    .close{
+        font-size: 90px;
+    }
+    .carousel-content {
+        width: 90%;
+    }
+    .gallery-main img {
+        width: 300px;
+        height: 450px;
+    }
+    .gallery-thumbs img {
+        width: 70px;
+        height: 80px;
+    }
+    .contenedor-play h1, .contenedor-play h2{
+        font-size: 25px;
+    }
+    #wish-form h3{
+        font-size: 40px;
+    }
+    #wish-form label{
+        font-size: 30px;
+    }
+    .banner-section{
+        font-size: 28px;
+        margin: 0 0 0 0;
+        padding: 5px;
+    }
+    .details img{
+        width: 100%;
+        height: auto;
+    }
+}
