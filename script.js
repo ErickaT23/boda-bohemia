@@ -241,6 +241,16 @@ requestIdleCallback(() => {
     console.log("Ejecutando tarea secundaria sin afectar la respuesta del usuario");
 });
 
+document.addEventListener("click", (event) => {
+    if (event.target.matches("h2.fade-in-element")) {
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                event.target.style.opacity = "1";
+            });
+        }, 0);
+    }
+});
+
 
 
 
