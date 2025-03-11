@@ -695,12 +695,20 @@ footer {
     margin-top: 0px;
 }
 .fade-in-element {
+    opacity: 0;
+    transform: translateY(10px);
     will-change: opacity, transform;
     transition: opacity 0.3s ease, transform 0.3s ease;
-  }  
+    content-visibility: auto;
+}
 .fade-in-element.visible {
     opacity: 1;
     transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-element {
+        transition: none; /* Evita animaciones innecesarias */
+    }
 }
 /* Media Queries */
 @media (max-width: 768px){

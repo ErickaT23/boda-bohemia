@@ -214,24 +214,33 @@ if (calendarLink) {
     });
 }
 
-//Optimización de código
-document.querySelector("h2.fade-in-element").addEventListener("click", () => {
+//OPTIMIZACION DE CODIGO 
+const fadeElement = document.querySelector("h2.fade-in-element");
+
+fadeElement.addEventListener("click", () => {
     requestAnimationFrame(() => {
-      // Código ligero aquí
+        fadeElement.style.opacity = "1"; // Ahora dentro del evento
     });
-  });
+});
 
-  requestAnimationFrame(() => {
-    element.style.opacity = "1";
-  });
+fadeElement.addEventListener("click", async () => {
+    const { default: Worker } = await import("./worker.js");
+    const worker = new Worker();
+    worker.postMessage({ action: "processData" });
+});
 
-  document.addEventListener("touchstart", function (e) {
-    // Código aquí
-  }, { passive: true });
-  
-  const worker = new Worker("worker.js");
-  worker.postMessage({ action: "processData" });
-    
+document.addEventListener("click", (event) => {
+    if (event.target.matches("h2.fade-in-element")) {
+        requestAnimationFrame(() => {
+            event.target.style.opacity = "1";
+        });
+    }
+});
+
+requestIdleCallback(() => {
+    console.log("Ejecutando tarea secundaria sin afectar la respuesta del usuario");
+});
+
 
 
 
