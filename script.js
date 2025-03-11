@@ -214,5 +214,24 @@ if (calendarLink) {
     });
 }
 
+//Optimización de código
+document.querySelector("h2.fade-in-element").addEventListener("click", () => {
+    requestAnimationFrame(() => {
+      // Código ligero aquí
+    });
+  });
+
+  requestAnimationFrame(() => {
+    element.style.opacity = "1";
+  });
+
+  document.addEventListener("touchstart", function (e) {
+    // Código aquí
+  }, { passive: true });
+  
+  const worker = new Worker("worker.js");
+  worker.postMessage({ action: "processData" });
+    
+
 
 
