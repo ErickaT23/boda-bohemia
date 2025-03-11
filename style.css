@@ -550,6 +550,9 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 /*sección de buenos deseos*/
+.wishes-section{
+    padding: 20px;
+}
 #wish-form {
     margin-top: 20px;
     text-align: left;
