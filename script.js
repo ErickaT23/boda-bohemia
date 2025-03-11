@@ -251,6 +251,18 @@ document.addEventListener("click", (event) => {
     }
 });
 
+document.querySelector("h2.fade-in-element").addEventListener("click", () => {
+    requestAnimationFrame(() => {
+        // Solo código liviano aquí
+        element.style.opacity = "1"; // Ejemplo de cambio simple
+    });
+});
+
+
+const worker = new Worker("worker.js");
+worker.postMessage({ action: "processData" });
+
+
 
 
 
