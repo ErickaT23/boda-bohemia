@@ -204,9 +204,15 @@ function toggleWishes() {
     document.getElementById('wishes').classList.toggle('hidden');
 }
 //click calendar
-document.querySelector('.section-calendar a').addEventListener('click', function(e) {
-    console.log('El enlace fue clickeado');
-    // Verifica si el navegador está bloqueando el enlace
-});
+const calendarLink = document.getElementById("addToCalendar");
+
+if (calendarLink) {
+    calendarLink.addEventListener("click", function(event) {
+        // Abrimos la URL en una nueva ventana o pestaña
+        window.open(this.href, "_blank");
+        event.preventDefault(); // Prevenir el comportamiento predeterminado
+    });
+}
+
 
 
